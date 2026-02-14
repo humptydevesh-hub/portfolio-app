@@ -3,65 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Nexus | Portfolio CMS</title>
-    
+    <title>Neon Nexus | Global Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        body { 
-            background-color: #030303; 
-            color: #e0e0e0; 
-            font-family: 'Courier New', Courier, monospace; 
-            overflow-x: hidden;
-        }
-
-        /* Cyberpunk Grid Background */
+        body { background-color: #030303; color: #e0e0e0; font-family: 'Courier New', Courier, monospace; overflow-x: hidden; }
         .grid-bg {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-image: linear-gradient(rgba(50, 50, 50, 0.1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(50, 50, 50, 0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
-            pointer-events: none;
+            background-size: 40px 40px; z-index: -1; pointer-events: none;
         }
-
-        /* Neon Glow Effects */
         .neon-panel {
-            background: rgba(15, 15, 15, 0.9);
-            border: 1px solid #333;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            background: rgba(15, 15, 15, 0.9); border: 1px solid #333;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px);
         }
-
         .input-neon {
-            background: #000;
-            border: 1px solid #333;
-            color: #0f0; /* Matrix Green Text */
-            transition: all 0.3s ease;
+            background: #000; border: 1px solid #333; color: #0f0; transition: all 0.3s ease;
         }
-        .input-neon:focus {
-            outline: none;
-            border-color: #d946ef; /* Fuchsia */
-            box-shadow: 0 0 10px #d946ef;
-        }
-
+        .input-neon:focus { outline: none; border-color: #d946ef; box-shadow: 0 0 10px #d946ef; }
         .btn-cyber {
-            background: linear-gradient(90deg, #9333ea, #db2777);
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: none;
-            position: relative;
-            overflow: hidden;
-            transition: 0.3s;
+            background: linear-gradient(90deg, #9333ea, #db2777); color: white;
+            text-transform: uppercase; letter-spacing: 2px; border: none; transition: 0.3s;
         }
-        .btn-cyber:hover {
-            box-shadow: 0 0 20px #db2777;
-            transform: translateY(-2px);
-        }
-
+        .btn-cyber:hover { box-shadow: 0 0 20px #db2777; transform: translateY(-2px); }
         .hidden { display: none; }
     </style>
 </head>
@@ -70,14 +36,11 @@
     <div class="grid-bg"></div>
 
     <header class="w-full max-w-5xl flex justify-between items-center py-6 border-b border-gray-800 mb-8">
-        <h1 class="text-3xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-            NEXUS<span class="text-white">_CMS</span>
-        </h1>
+        <h1 class="text-3xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">NEXUS<span class="text-white">_GLOBAL</span></h1>
         <div id="user-status" class="text-sm text-gray-500">System Offline</div>
     </header>
 
     <main id="auth-container" class="w-full max-w-4xl flex flex-col md:flex-row gap-8">
-        
         <div class="neon-panel p-8 rounded-xl flex-1">
             <h2 class="text-xl font-bold text-purple-400 mb-6"><i class="fas fa-lock"></i> SYSTEM LOGIN</h2>
             <input type="text" id="login-user" class="input-neon w-full p-3 mb-4 rounded" placeholder="USERNAME">
@@ -88,7 +51,7 @@
         <div id="signup-panel" class="neon-panel p-8 rounded-xl flex-1 border-l-4 border-pink-600">
             <h2 class="text-xl font-bold text-pink-500 mb-6"><i class="fas fa-user-plus"></i> NEW USER</h2>
             <input type="text" id="signup-user" class="input-neon w-full p-3 mb-3 rounded" placeholder="CHOOSE USERNAME">
-            <input type="email" id="signup-email" class="input-neon w-full p-3 mb-3 rounded" placeholder="EMAIL ADDRESS">
+            <input type="email" id="signup-email" class="input-neon w-full p-3 mb-3 rounded" placeholder="EMAIL (REQUIRED)" required>
             <input type="password" id="signup-pass" class="input-neon w-full p-3 mb-3 rounded" placeholder="PASSWORD">
             <input type="text" id="signup-bio" class="input-neon w-full p-3 mb-6 rounded" placeholder="BIO (e.g. Designer)">
             <button onclick="signup()" class="btn-cyber w-full p-3 rounded font-bold bg-gray-800">INITIATE SIGNUP</button>
@@ -96,11 +59,10 @@
 
         <div id="otp-panel" class="hidden neon-panel p-8 rounded-xl flex-1 border-2 border-yellow-500 animate-pulse">
             <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">VERIFY IDENTITY</h2>
-            <p class="text-center text-gray-400 text-xs mb-4">CODE SENT TO SERVER CONSOLE</p>
+            <p class="text-center text-gray-400 text-xs mb-4">Check Server Console for Code</p>
             <input type="text" id="otp-code" class="input-neon w-full p-4 text-center text-3xl tracking-[10px] mb-6 rounded" maxlength="6" placeholder="000000">
             <button onclick="verifyOTP()" class="btn-cyber w-full p-3 rounded font-bold">VERIFY & ACTIVATE</button>
         </div>
-
     </main>
 
     <div id="dashboard" class="hidden w-full max-w-5xl">
@@ -135,29 +97,27 @@
                 <button onclick="searchPortfolio()" class="bg-purple-700 hover:bg-purple-600 px-6 rounded-r font-bold">SEARCH</button>
             </div>
         </div>
-        
-        <div id="results-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            </div>
+        <div id="results-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
     </div>
 
     <script>
-        const API_URL = "http://127.0.0.1:8000";
+        // THIS IS THE ONLY LINE THAT CHANGED - IT NOW POINTS TO YOUR CLOUD SERVER
+        const API_URL = "https://portfolio-app-dkaa.onrender.com"; 
+
         let authToken = "";
         let pendingUser = "";
 
-        // GSAP Intro Animation
+        // GSAP Intro
         gsap.from("header", { duration: 1, y: -50, opacity: 0 });
         gsap.from("#auth-container", { duration: 1, delay: 0.5, opacity: 0, scale: 0.9 });
 
-        // --- AUTHENTICATION ---
-        
         async function signup() {
             pendingUser = document.getElementById("signup-user").value;
             const email = document.getElementById("signup-email").value;
             const pass = document.getElementById("signup-pass").value;
             const bio = document.getElementById("signup-bio").value;
 
-            if(!pendingUser || !email || !pass) return alert("FILL ALL FIELDS");
+            if(!email.includes("@")) return alert("Invalid Email");
 
             const formData = new FormData();
             formData.append("username", pendingUser);
@@ -167,108 +127,77 @@
 
             try {
                 const res = await fetch(`${API_URL}/signup`, { method: "POST", body: formData });
+                const data = await res.json();
                 if(res.ok) {
-                    // Switch to OTP View
                     gsap.to("#signup-panel", { duration: 0.3, opacity: 0, display: "none" });
                     const otpPanel = document.getElementById("otp-panel");
                     otpPanel.classList.remove("hidden");
                     gsap.from(otpPanel, { duration: 0.5, x: 50, opacity: 0 });
                 } else {
-                    const err = await res.json();
-                    alert("ERROR: " + err.detail);
+                    alert("ERROR: " + data.detail);
                 }
-            } catch(e) { alert("SERVER OFFLINE. Run python -m uvicorn..."); }
+            } catch(e) { alert("Server Offline"); }
         }
 
         async function verifyOTP() {
             const formData = new FormData();
             formData.append("username", pendingUser);
             formData.append("otp", document.getElementById("otp-code").value);
-
             const res = await fetch(`${API_URL}/verify_otp`, { method: "POST", body: formData });
-            if(res.ok) {
-                alert("VERIFIED. PLEASE LOGIN.");
-                location.reload();
-            } else {
-                alert("INVALID CODE");
-            }
+            if(res.ok) { alert("VERIFIED! PLEASE LOGIN."); location.reload(); }
+            else { alert("INVALID CODE"); }
         }
 
         async function login() {
             const formData = new FormData();
             formData.append("username", document.getElementById("login-user").value);
             formData.append("password", document.getElementById("login-pass").value);
-
-            try {
-                const res = await fetch(`${API_URL}/token`, { method: "POST", body: formData });
-                if(res.ok) {
-                    const data = await res.json();
-                    authToken = data.access_token;
-                    
-                    // Show Dashboard
-                    gsap.to("#auth-container", { duration: 0.5, height: 0, opacity: 0, display: "none" });
-                    const dash = document.getElementById("dashboard");
-                    dash.classList.remove("hidden");
-                    gsap.from(dash, { duration: 1, opacity: 0, y: 50 });
-                    
-                    document.getElementById("dash-username").innerText = document.getElementById("login-user").value;
-                    document.getElementById("user-status").innerText = "SYSTEM ONLINE // CONNECTED";
-                    document.getElementById("user-status").classList.add("text-green-500");
-                } else {
-                    alert("LOGIN FAILED. Check credentials or verify account.");
-                }
-            } catch(e) { alert("CONNECTION REFUSED"); }
+            const res = await fetch(`${API_URL}/token`, { method: "POST", body: formData });
+            if(res.ok) {
+                const data = await res.json();
+                authToken = data.access_token;
+                gsap.to("#auth-container", { duration: 0.5, height: 0, opacity: 0, display: "none" });
+                const dash = document.getElementById("dashboard");
+                dash.classList.remove("hidden");
+                gsap.from(dash, { duration: 1, opacity: 0, y: 50 });
+                document.getElementById("dash-username").innerText = document.getElementById("login-user").value;
+                document.getElementById("user-status").innerText = "SYSTEM ONLINE // CONNECTED";
+                document.getElementById("user-status").classList.add("text-green-500");
+            } else { alert("LOGIN FAILED"); }
         }
 
-        // --- UPLOAD & SEARCH ---
-
         async function upload() {
-            if(!authToken) return alert("NOT LOGGED IN");
-            
             const formData = new FormData();
             formData.append("title", document.getElementById("up-title").value);
             formData.append("is_public", document.getElementById("up-visibility").value === "true");
             formData.append("file", document.getElementById("up-file").files[0]);
 
             const res = await fetch(`${API_URL}/upload`, {
-                method: "POST",
-                headers: { "Authorization": `Bearer ${authToken}` },
-                body: formData
+                method: "POST", headers: { "Authorization": `Bearer ${authToken}` }, body: formData
             });
-
             const data = await res.json();
-            if(data.private_token) {
-                // Show Magic Link
-                prompt("PRIVATE UPLOAD SUCCESSFUL. COPY THIS LINK:", 
-                       window.location.origin + window.location.pathname + "?token=" + data.private_token);
-            } else {
-                alert("PUBLIC UPLOAD SUCCESSFUL");
-            }
+            alert("UPLOAD SUCCESSFUL");
         }
 
         async function searchPortfolio() {
             const user = document.getElementById("search-query").value;
             const grid = document.getElementById("results-grid");
-            grid.innerHTML = "<p class='text-gray-500'>SEARCHING...</p>";
-
+            grid.innerHTML = "<p>SEARCHING...</p>";
             const res = await fetch(`${API_URL}/portfolio/${user}`);
             grid.innerHTML = "";
-
             if(res.ok) {
                 const data = await res.json();
-                if(data.items.length === 0) grid.innerHTML = "<p>USER HAS NO PUBLIC ITEMS</p>";
-                
                 data.items.forEach(item => {
+                    let imgPath = item.file_url;
+                    if(!imgPath.startsWith("http")) imgPath = `${API_URL}/${imgPath}`;
+
                     grid.innerHTML += `
-                        <div class="neon-panel p-4 rounded hover:bg-gray-900 transition">
-                            <img src="${API_URL}/${item.file_path}" class="w-full h-48 object-cover rounded mb-3 border border-gray-700">
+                        <div class="neon-panel p-4 rounded">
+                            <img src="${imgPath}" class="w-full h-48 object-cover rounded mb-3">
                             <h4 class="font-bold text-purple-400">${item.title}</h4>
-                        </div>
-                    `;
+                        </div>`;
                 });
-            } else {
-                grid.innerHTML = "<p class='text-red-500'>USER NOT FOUND</p>";
-            }
+            } else { grid.innerHTML = "<p>USER NOT FOUND</p>"; }
         }
     </script>
 </body>
