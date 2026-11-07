@@ -7,3 +7,5 @@ bcrypt==3.2.0
 python-multipart
 python-jose
 email-validator
+psycopg[binary]>=3.2,<4.0
+cloudinary>=1.40,<2.0
