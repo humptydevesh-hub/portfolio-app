@@ -59,7 +59,7 @@
 
         <div id="otp-panel" class="hidden neon-panel p-8 rounded-xl flex-1 border-2 border-yellow-500 animate-pulse">
             <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">VERIFY IDENTITY</h2>
-            <p class="text-center text-gray-400 text-xs mb-4">Check Server Console for Code</p>
+            <p class="text-center text-gray-400 text-xs mb-4">Check your email for the verification code</p>
             <input type="text" id="otp-code" class="input-neon w-full p-4 text-center text-3xl tracking-[10px] mb-6 rounded" maxlength="6" placeholder="000000">
             <button onclick="verifyOTP()" class="btn-cyber w-full p-3 rounded font-bold">VERIFY & ACTIVATE</button>
         </div>
@@ -102,7 +102,7 @@
 
     <script>
         // THIS IS THE ONLY LINE THAT CHANGED - IT NOW POINTS TO YOUR CLOUD SERVER
-        const API_URL = "https://portfolio-app-dkaa.onrender.com"; 
+        const API_URL = window.location.origin; 
 
         let authToken = "";
         let pendingUser = "";
@@ -189,7 +189,7 @@
                 const data = await res.json();
                 data.items.forEach(item => {
                     let imgPath = item.file_url;
-                    if(!imgPath.startsWith("http")) imgPath = `${API_URL}/${imgPath}`;
+                    if(!imgPath.startsWith("http")) imgPath = `${API_URL}${imgPath.startsWith("/") ? "" : "/"}${imgPath}`;
 
                     grid.innerHTML += `
                         <div class="neon-panel p-4 rounded">
